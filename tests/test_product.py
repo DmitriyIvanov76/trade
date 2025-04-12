@@ -1,5 +1,21 @@
-def test_product(mobile_telephone):
-    assert mobile_telephone.name == "Samsung"
-    assert mobile_telephone.description == "256GB"
-    assert mobile_telephone.price == 50000
-    assert mobile_telephone.quantity == 5
+import pytest
+from src.product import Product
+
+@pytest.mark.parametrize(
+    'name, description, price, quantity',
+    [
+        ('Samsung', '256GB', 50000, 5),
+        ('Samsung', '256GB', 50000, 5),
+        ('Samsung', '256GB', 50000, 5),
+        ('Samsung', '256GB', 50000, 5)
+    ]
+)
+
+
+def test_product(name, description, price, quantity):
+   product = Product(name, description, price, quantity)
+
+   assert product.name == 'Samsung'
+   assert product.description == '256GB'
+   assert product.price == 50000
+   assert product.quantity == 5
