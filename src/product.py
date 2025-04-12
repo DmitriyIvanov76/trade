@@ -55,10 +55,15 @@ class Product:
     # изменение приватной цены
     @price.setter
     def price(self, price):
-        if price <= 0:
-            print('Цена не должна быть нулевая или отрицательная')
-        else:
-            self.__price = price
+       if price < self.price:
+           options = input('Подтвердите снижение цены, YES(Y) или NO(N): ').lower()
+           if options == 'y':
+               if price <= 0:
+                    print('Цена не должна быть нулевая или отрицательная')
+               else:
+                    self.__price = price
+           else:
+               self.__price = self.__price
 
 
 

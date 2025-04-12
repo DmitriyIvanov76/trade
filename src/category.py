@@ -1,4 +1,4 @@
-from src.product import Product
+
 
 class Category:
     name: str
@@ -25,6 +25,6 @@ class Category:
 
 
 
-print(Category.products)
+#if __name__ == '__main__':
 
 
