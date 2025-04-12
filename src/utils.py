@@ -27,6 +27,6 @@ if __name__ == "__main__":
     raw_data = reader_json("../data/products.json")
     result = create_object_file(raw_data)
 
-    a = Category('Smart', 'Smart как средство', result)
+    a = Category("Smart", "Smart как средство", result)
 
     print(a.get_product)

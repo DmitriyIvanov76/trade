@@ -1,5 +1,3 @@
-
-
 class Category:
     name: str
     description: str
@@ -18,13 +16,11 @@ class Category:
     # добавление приватного параметра
     def add_product(self, prod):
         self.__products.append(prod)
+
     # обращение к приватному параметру
     @property
     def products(self):
         return self.__products
 
 
-
-#if __name__ == '__main__':
-
-
+# if __name__ == '__main__':

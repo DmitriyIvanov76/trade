@@ -13,19 +13,19 @@ class Product:
     # просмотр товара
     @property
     def product_info(self):
-        return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.'
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     # принимает на вход словарь с параметрами, возвращает созданный объект
     # второй параметр словарь существующих товаров, при совпадении изменяются параметры существующего товара
     @classmethod
-    def new_product_dict(cls, new_product_dict: dict, old_product_dict: dict=None):
+    def new_product_dict(cls, new_product_dict: dict, old_product_dict: dict = None):
 
         name, description, price, quantity = [i for i in new_product_dict.values()]
 
-        if old_product_dict is not None and name == old_product_dict['name']:
+        if old_product_dict is not None and name == old_product_dict["name"]:
 
-            new_price = max(price, old_product_dict['price'])
-            new_quantity = quantity + old_product_dict['quantity']
+            new_price = max(price, old_product_dict["price"])
+            new_quantity = quantity + old_product_dict["quantity"]
 
             return cls(name, description, new_price, new_quantity)
 
@@ -34,7 +34,7 @@ class Product:
     # принимает на вход словарь с параметрами, возвращает созданный объект
     # второй параметр список существующих товаров, при совпадении изменяются параметры существующего товара
     @classmethod
-    def new_product(cls, new_product_dict: dict, old_product_list: list=None):
+    def new_product(cls, new_product_dict: dict, old_product_list: list = None):
 
         name, description, price, quantity = [i for i in new_product_dict.values()]
 
@@ -54,16 +54,13 @@ class Product:
 
     # изменение приватной цены
     @price.setter
-    def price(self, price):
-       if price < self.price:
-           options = input('Подтвердите снижение цены, YES(Y) или NO(N): ').lower()
-           if options == 'y':
-               if price <= 0:
-                    print('Цена не должна быть нулевая или отрицательная')
-               else:
+    def price(self, price: float):
+        if price < self.price:
+            options = input("Подтвердите снижение цены, YES(Y) или NO(N): ").lower()
+            if options == "y":
+                if price <= 0:
+                    print("Цена не должна быть нулевая или отрицательная")
+                else:
                     self.__price = price
-           else:
-               self.__price = self.__price
-
-
-
+            else:
+                self.__price = self.__price
