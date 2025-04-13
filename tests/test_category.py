@@ -1,6 +1,7 @@
 from src.category import Category
 
 
+
 class TestCategory:
     def test_category(self, telephone_category):
         name, description, products = telephone_category
@@ -14,8 +15,8 @@ class TestCategory:
         assert Category.category_count == 1
 
     # проверка Category.product_count
-    def test_added_products(self, telephone_category, added_product):
+    def test_added_products(self, telephone_category, product_instance):
         name, description, products = telephone_category
         new_category = Category(name, description, products)
-        new_category.add_product(added_product)
+        new_category.add_product(product_instance)
         assert Category.product_count == len(products) + 1

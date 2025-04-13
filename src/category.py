@@ -1,3 +1,4 @@
+from src.product import Product
 class Category:
     name: str
     description: str
@@ -15,7 +16,10 @@ class Category:
 
     # добавление приватного параметра
     def add_product(self, prod):
-        self.__products.append(prod)
+        if isinstance(prod, Product):
+            self.__products.append(prod)
+        else:
+            raise TypeError(f'{prod} должен быть экземпляром класса {Product}')
 
     # обращение к приватному параметру
     @property
@@ -24,3 +28,4 @@ class Category:
 
 
 # if __name__ == '__main__':
+

@@ -1,7 +1,7 @@
 class Product:
     name: int
     description: str
-    price: float
+    price: [float | int]
     quantity: str
 
     def __init__(self, name, description, price, quantity):
@@ -23,7 +23,6 @@ class Product:
         name, description, price, quantity = [i for i in new_product_dict.values()]
 
         if old_product_dict is not None and name == old_product_dict["name"]:
-
             new_price = max(price, old_product_dict["price"])
             new_quantity = quantity + old_product_dict["quantity"]
 
@@ -39,7 +38,6 @@ class Product:
         name, description, price, quantity = [i for i in new_product_dict.values()]
 
         if old_product_list is not None and any(i[0] == name for i in old_product_list):
-
             new_price = max(price, max(i[-2] for i in old_product_list if i[0] == name))
             new_quantity = quantity + sum(i[-1] for i in old_product_list if i[0] == name)
 
@@ -54,13 +52,15 @@ class Product:
 
     # изменение приватной цены
     @price.setter
-    def price(self, price: float):
-        if price < self.price:
-            options = input("Подтвердите снижение цены, YES(Y) или NO(N): ").lower()
-            if options == "y":
-                if price <= 0:
-                    print("Цена не должна быть нулевая или отрицательная")
-                else:
+    def price(self, price: [float | int]):
+        if price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        else:
+            if price < self.price:
+                options = input("Подтвердите снижение цены, YES(Y) или NO(N): ").lower()
+                if options == "y":
                     self.__price = price
-            else:
-                self.__price = self.__price
+                else:
+                    self.price = self.price
+
+# if __name__ == '__main__':

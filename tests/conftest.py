@@ -52,3 +52,10 @@ def product_test_old_list():
 def new_product_test_result():
     name, description, price, quantity = "Sony", "64mb, Серый цвет, 3MP камера", 210000.0, 20
     return name, description, price, quantity
+
+# экземпляр класса Product для теста add_product
+@pytest.fixture
+def product_instance():
+    new_product = Product("Nokia", "N95", 17000.0, 7)
+    return new_product
+
