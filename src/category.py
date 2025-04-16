@@ -14,6 +14,10 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.products)
 
+
+    def __str__(self):
+        return f'{self.name}, количество продуктов: {Category.product_count} шт.'
+
     # добавление приватного параметра
     def add_product(self, prod):
         if isinstance(prod, Product):
@@ -25,6 +29,23 @@ class Category:
     @property
     def products(self):
         return self.__products
+
+    # перебор товаров одной категории
+    def __iter__(self):
+        self.count = -1
+        return self
+
+    def __next__(self):
+
+        if self.count < len(self.products):
+            self.count += 1
+            return self.products[self.count]
+        else:
+            raise StopIteration
+
+
+
+
 
 
 # if __name__ == '__main__':

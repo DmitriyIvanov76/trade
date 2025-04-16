@@ -20,3 +20,6 @@ class TestCategory:
         new_category = Category(name, description, products)
         new_category.add_product(product_instance)
         assert Category.product_count == len(products) + 1
+
+
+
