@@ -1,5 +1,6 @@
 from src.category import Category
-
+from src.product import Product
+import pytest
 
 
 class TestCategory:
@@ -21,5 +22,12 @@ class TestCategory:
         new_category.add_product(product_instance)
         assert Category.product_count == len(products) + 1
 
-
-
+    # проверка вывода str
+    def test_str(self, capsys):
+        product1 = Product("Motorola", "телефоны двухтысячных", 7500.0, 25)
+        product2 = Product("Ericsson", "телефоны двухтысячных", 10000.3, 12)
+        new_category = Category('смартфоны', 'Смартфоны, как средство не только коммуникации',
+                                [product1, product2])
+        print(str(new_category))
+        captured = capsys.readouterr()
+        assert captured.out.strip() == 'смартфоны, количество продуктов: 37 шт.'

@@ -1,3 +1,5 @@
+
+
 from src.product import Product
 class Category:
     name: str
@@ -16,7 +18,8 @@ class Category:
 
 
     def __str__(self):
-        return f'{self.name}, количество продуктов: {Category.product_count} шт.'
+        total_product = sum(i.quantity for i in self.products)
+        return f'{self.name}, количество продуктов: {total_product} шт.'
 
     # добавление приватного параметра
     def add_product(self, prod):
@@ -29,22 +32,6 @@ class Category:
     @property
     def products(self):
         return self.__products
-
-    # перебор товаров одной категории
-    def __iter__(self):
-        self.count = -1
-        return self
-
-    def __next__(self):
-
-        if self.count < len(self.products):
-            self.count += 1
-            return self.products[self.count]
-        else:
-            raise StopIteration
-
-
-
 
 
 
