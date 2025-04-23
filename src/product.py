@@ -10,6 +10,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт.'
+
     # просмотр товара
     @property
     def product_info(self):
@@ -62,5 +65,9 @@ class Product:
                     self.__price = price
                 else:
                     self.price = self.price
+
+    # метод складывания атрибутов объекта
+    def __add__(self, other):
+        return self.price * self.quantity + other.price * other.quantity
 
 # if __name__ == '__main__':

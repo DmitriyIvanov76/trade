@@ -1,3 +1,5 @@
+
+
 from src.product import Product
 class Category:
     name: str
@@ -14,6 +16,11 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.products)
 
+
+    def __str__(self):
+        total_product = sum(i.quantity for i in self.products)
+        return f'{self.name}, количество продуктов: {total_product} шт.'
+
     # добавление приватного параметра
     def add_product(self, prod):
         if isinstance(prod, Product):
@@ -25,6 +32,7 @@ class Category:
     @property
     def products(self):
         return self.__products
+
 
 
 # if __name__ == '__main__':
