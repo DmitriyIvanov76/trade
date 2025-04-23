@@ -68,6 +68,10 @@ class Product:
 
     # метод складывания атрибутов объекта
     def __add__(self, other):
-        return self.price * self.quantity + other.price * other.quantity
+        if type(other) is self.__class__:
+            return self.price * self.quantity + other.price * other.quantity
+        else:
+            raise TypeError
+
 
 # if __name__ == '__main__':
