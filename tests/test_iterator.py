@@ -11,9 +11,5 @@ def test_iterator(telephone_category):
     assert next(iterator) == products[0]
     assert next(iterator) == products[1]
 
-
     with pytest.raises(StopIteration):
         next(iterator)
-
-
-

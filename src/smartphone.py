@@ -8,5 +8,3 @@ class Smartphone(Product):
         self.model = model
         self.memory = memory
         self.color = color
-
-
