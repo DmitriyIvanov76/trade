@@ -3,6 +3,7 @@ import pytest
 from src.product import Product
 
 
+
 # для тестирования product.py
 @pytest.fixture
 def mobile_telephone():
@@ -58,3 +59,34 @@ def new_product_test_result():
 def product_instance():
     new_product = Product("Nokia", "N95", 17000.0, 7)
     return new_product
+
+
+# тестирование smartphone.py
+@pytest.fixture
+def smartphone():
+    name, description, price, quantity, efficiency, model, memory, color = (
+        "samsung",
+        "android9",
+        12000,
+        10,
+        "279",
+        "s7",
+        "256",
+        "grey",
+    )
+    return name, description, price, quantity, efficiency, model, memory, color
+
+
+# тестирование lawn_grass.py
+@pytest.fixture
+def lawn_grass():
+    name, description, price, quantity, country, germination_period, color = (
+        "футбол",
+        "Для спорт. площадок",
+        696,
+        10,
+        "Rus",
+        "mouth",
+        "green",
+    )
+    return name, description, price, quantity, country, germination_period, color
