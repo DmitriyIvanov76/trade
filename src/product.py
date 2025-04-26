@@ -21,9 +21,13 @@ class Product:
     # принимает на вход словарь с параметрами, возвращает созданный объект
     # второй параметр словарь существующих товаров, при совпадении изменяются параметры существующего товара
     @classmethod
-    def new_product_dict(cls, new_product_dict: dict, old_product_dict: dict = None):
+    def new_product_dict(cls, new_product_dictionary: dict, old_product_dict: dict = None):
 
-        name, description, price, quantity = [i for i in new_product_dict.values()]
+        name = new_product_dictionary.get('name')
+        description = new_product_dictionary.get('description')
+        price = new_product_dictionary.get('price')
+        quantity = new_product_dictionary.get('quantity')
+
 
         if old_product_dict is not None and name == old_product_dict["name"]:
             new_price = max(price, old_product_dict["price"])
@@ -33,12 +37,20 @@ class Product:
 
         return cls(name, description, price, quantity)
 
+
+
     # принимает на вход словарь с параметрами, возвращает созданный объект
     # второй параметр список существующих товаров, при совпадении изменяются параметры существующего товара
     @classmethod
     def new_product(cls, new_product_dict: dict, old_product_list: list = None):
 
-        name, description, price, quantity = [i for i in new_product_dict.values()]
+        # name, description, price, quantity = [i for i in new_product_dict.values()]
+        name = new_product_dict.get('name')
+        description = new_product_dict.get('description')
+        price = new_product_dict.get('price')
+        quantity = new_product_dict.get('quantity')
+
+
 
         if old_product_list is not None and any(i[0] == name for i in old_product_list):
             new_price = max(price, max(i[-2] for i in old_product_list if i[0] == name))
