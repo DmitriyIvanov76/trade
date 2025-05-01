@@ -3,7 +3,6 @@ import pytest
 from src.product import Product
 
 
-
 # для тестирования product.py
 @pytest.fixture
 def mobile_telephone():

@@ -66,8 +66,9 @@ class TestProductSetter:
         new_product.price = 0
         assert new_product.price == new_product.price
 
+
+class TestStr:
     def test_str(self, mobile_telephone, capsys):
-        new_product = Product("Samsung", "256GB", 50000, 5)
-        print(str(new_product))
+        Product("Samsung", "256GB", 50000, 5)
         captured = capsys.readouterr()
-        assert captured.out.strip() == "Samsung, 50000 руб. Остаток: 5 шт."
+        assert captured.out.strip() == "Product, 256GB, 50000, 5"

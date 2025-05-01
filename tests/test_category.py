@@ -28,4 +28,9 @@ class TestCategory:
         new_category = Category("смартфоны", "Смартфоны, как средство не только коммуникации", [product1, product2])
         print(str(new_category))
         captured = capsys.readouterr()
-        assert captured.out.strip() == "смартфоны, количество продуктов: 37 шт."
+        output_text = (
+            "Product, телефоны двухтысячных, 7500.0, 25\n"
+            "Product, телефоны двухтысячных, 10000.3, 12\n"
+            "смартфоны, количество продуктов: 37 шт."
+        )
+        assert captured.out.strip() == output_text

@@ -1,7 +1,13 @@
-class Product:
+from typing import Union
+
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
+
+
+class Product(PrintMixin, BaseProduct):
     name: int
     description: str
-    price: [float | int]
+    price: Union[float | int]
     quantity: str
 
     def __init__(self, name, description, price, quantity):
@@ -9,6 +15,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
@@ -19,38 +26,14 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     # принимает на вход словарь с параметрами, возвращает созданный объект
-    # второй параметр словарь существующих товаров, при совпадении изменяются параметры существующего товара
-    @classmethod
-    def new_product_dict(cls, new_product_dictionary: dict, old_product_dict: dict = None):
-
-        name = new_product_dictionary.get('name')
-        description = new_product_dictionary.get('description')
-        price = new_product_dictionary.get('price')
-        quantity = new_product_dictionary.get('quantity')
-
-
-        if old_product_dict is not None and name == old_product_dict["name"]:
-            new_price = max(price, old_product_dict["price"])
-            new_quantity = quantity + old_product_dict["quantity"]
-
-            return cls(name, description, new_price, new_quantity)
-
-        return cls(name, description, price, quantity)
-
-
-
-    # принимает на вход словарь с параметрами, возвращает созданный объект
     # второй параметр список существующих товаров, при совпадении изменяются параметры существующего товара
     @classmethod
     def new_product(cls, new_product_dict: dict, old_product_list: list = None):
 
-        # name, description, price, quantity = [i for i in new_product_dict.values()]
-        name = new_product_dict.get('name')
-        description = new_product_dict.get('description')
-        price = new_product_dict.get('price')
-        quantity = new_product_dict.get('quantity')
-
-
+        name = new_product_dict.get("name")
+        description = new_product_dict.get("description")
+        price = new_product_dict.get("price")
+        quantity = new_product_dict.get("quantity")
 
         if old_product_list is not None and any(i[0] == name for i in old_product_list):
             new_price = max(price, max(i[-2] for i in old_product_list if i[0] == name))
@@ -86,4 +69,6 @@ class Product:
             raise TypeError
 
 
-# if __name__ == '__main__':
+if __name__ == "__main__":
+    di = {"name": "Sony", "description": "64mb, Серый цвет, 3MP камера", "price": 80000.0, "quantity": 11}
+    a = Product.new_product(di)
