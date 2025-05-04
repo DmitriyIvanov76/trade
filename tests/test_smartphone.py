@@ -13,3 +13,13 @@ class TestSmartphone:
         assert new_smart.model == "s7"
         assert new_smart.memory == "256"
         assert new_smart.color == "grey"
+
+
+class TestAddedSmartphone:
+    # добавление нового смартфона(.new_product)
+    def test_new_product_added(self, smartphones):
+        new_devices = Smartphone.new_product(smartphones)
+        assert new_devices.name == "Iphone 14"
+        assert new_devices.price == 47600
+        assert new_devices.quantity == 18
+        assert new_devices.color == "black"

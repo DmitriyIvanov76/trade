@@ -10,7 +10,6 @@ class Smartphone(Product):
         self.model = model
         self.memory = memory
         self.color = color
-        print(repr(self))
 
     # дополнен класс метод родительского класса для создания объекта
     @classmethod
@@ -32,3 +31,18 @@ class Smartphone(Product):
             memory,
             color,
         )
+
+
+if __name__ == "__main__":
+    device = {
+        "name": "Iphone 14",
+        "description": "for India",
+        "price": 47600,
+        "quantity": 18,
+        "efficiency": "6‑core CPU",
+        "model": "Pro Max",
+        "memory": "256Gb",
+        "color": "black",
+    }
+    a = Smartphone.new_product(device)
+    print(a.description)

@@ -14,14 +14,7 @@ class LawnGrass(Product):
     # дополнен класс метод родительского класса для создания объекта
     @classmethod
     def new_product(cls, new_product_dictionary: dict, old_product_dict: dict = None):
-        # name, description, price, quantity, country, germination_period, color = [i for i in new_product_dictionary.values()]
         product_inst = super().new_product(new_product_dictionary, old_product_dict)
-        product_inst = Product(
-            new_product_dictionary["name"],
-            new_product_dictionary["description"],
-            new_product_dictionary["price"],
-            new_product_dictionary["quantity"],
-        )
 
         country = new_product_dictionary.get("country", "unknown")
         germination_period = new_product_dictionary.get("germination_period", "unknown")
@@ -36,7 +29,7 @@ class LawnGrass(Product):
             germination_period,
             color,
         )
-        # return cls(name, description, price, quantity, country, germination_period, color)
+
 
 
 if __name__ == "__main__":
