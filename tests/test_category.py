@@ -1,3 +1,4 @@
+
 from src.category import Category
 from src.product import Product
 
@@ -8,10 +9,6 @@ class TestCategory:
         new_category = Category(name, description, products)
         assert new_category.name == "смартфоны"
         assert new_category.description == "Смартфоны, как средство не только коммуникации"
-        assert new_category.products == [
-            ("Motorola", "телефоны двухтысячных", 7500, 25),
-            ("Ericsson", "телефоны двухтысячных", 10000.3, 12),
-        ]
         assert Category.category_count == 3
 
     # проверка Category.product_count
@@ -34,3 +31,15 @@ class TestCategory:
             "смартфоны, количество продуктов: 37 шт."
         )
         assert captured.out.strip() == output_text
+
+
+class TestMiddlePrice:
+    def test_middle_price(self, telephone_category):
+        name, description, products = telephone_category
+        new_devices = Category(name, description, products)
+        assert new_devices.middle_price() == 8750.15
+
+    def test_middle_price_empty_product(self, telephone_category_zero_list):
+        name, description, products = telephone_category_zero_list
+        new_devices = Category(name, description, products)
+        assert new_devices.middle_price() == 0

@@ -1,3 +1,5 @@
+from itertools import product
+
 from src.product import Product
 
 
@@ -32,5 +34,27 @@ class Category:
     def products(self):
         return self.__products
 
+    # метод подсчёта среднего ценника всех товаров
+    def middle_price(self):
+        try:
+            result = sum(products.price for products in self.products) / len(self.products)
+            return result
+        except ZeroDivisionError:
+            return 0
 
-# if __name__ == '__main__':
+
+if __name__ == "__main__":
+    tel = [
+        ("Motorola", "телефоны двухтысячных", 7500, 25),
+        ("Ericsson", "телефоны двухтысячных", 10000.3, 12),
+    ]
+    empty_list = []
+    di = {"name": "Sony", "description": "64mb, Серый цвет, 3MP камера", "price": 80000.0, "quantity": 11}
+    d2 = {"name": "Sony", "description": "64mb, Серый цвет, 3MP камера", "price": 2000.0, "quantity": 11}
+
+    b = Product.new_product(di)
+    v = Product.new_product(d2)
+
+    a = Category("смартфоны", "Смартфоны, как средство не только коммуникации", [b, v])
+
+    print(a.products)

@@ -31,16 +31,15 @@ class LawnGrass(Product):
         )
 
 
-
-if __name__ == "__main__":
-    a = LawnGrass.new_product(
-        {
-            "name": "a",
-            "description": "b",
-            "price": 1,
-            "quantity": 2,
-            "country": "c",
-            "germination_period": "d",
-            "color": "e",
-        }
-    )
+# if __name__ == "__main__":
+#     a = LawnGrass.new_product(
+#         {
+#             "name": "a",
+#             "description": "b",
+#             "price": 1,
+#             "quantity": 0,
+#             "country": "c",
+#             "germination_period": "d",
+#             "color": "e",
+#         }
+#     )

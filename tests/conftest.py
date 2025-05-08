@@ -9,17 +9,26 @@ def mobile_telephone():
     return Product(name="Samsung", description="256GB", price=50000, quantity=5)
 
 
+# тест для product.py (продукт)
+@pytest.fixture
+def name_product():
+    return "Samsung", "256GB", 50000, 5
+
+
 # для тестирования category.py
 @pytest.fixture
 def telephone_category():
-    name, description, products = (
-        "смартфоны",
-        "Смартфоны, как средство не только коммуникации",
-        [
-            ("Motorola", "телефоны двухтысячных", 7500, 25),
-            ("Ericsson", "телефоны двухтысячных", 10000.3, 12),
-        ],
-    )
+    name, description = ("смартфоны", "Смартфоны, как средство не только коммуникации")
+    moto = Product("Motorola", "телефоны двухтысячных", 7500, 25)
+    ericsson = Product("Ericsson", "телефоны двухтысячных", 10000.3, 12)
+    products = [moto, ericsson]
+    return name, description, products
+
+
+# тест пустого списка category.py (middle_price)
+@pytest.fixture
+def telephone_category_zero_list():
+    name, description, products = ("смартфоны", "Смартфоны, как средство не только коммуникации", [])
     return name, description, products
 
 

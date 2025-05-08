@@ -33,16 +33,16 @@ class Smartphone(Product):
         )
 
 
-if __name__ == "__main__":
-    device = {
-        "name": "Iphone 14",
-        "description": "for India",
-        "price": 47600,
-        "quantity": 18,
-        "efficiency": "6‑core CPU",
-        "model": "Pro Max",
-        "memory": "256Gb",
-        "color": "black",
-    }
-    a = Smartphone.new_product(device)
-    print(a.description)
+# if __name__ == "__main__":
+#     device = {
+#         "name": "Iphone 14",
+#         "description": "for India",
+#         "price": 47600,
+#         "quantity": 5,
+#         "efficiency": "6‑core CPU",
+#         "model": "Pro Max",
+#         "memory": "256Gb",
+#         "color": "black",
+#     }
+#     a = Smartphone.new_product(device)
+#     print(a.description)

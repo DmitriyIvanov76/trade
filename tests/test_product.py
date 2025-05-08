@@ -1,4 +1,5 @@
 from unittest.mock import patch
+from contextlib import nullcontext as does_not_raise
 
 import pytest
 
@@ -6,22 +7,33 @@ from src.product import Product
 
 
 class TestProduct:
-    @pytest.mark.parametrize(
-        "name, description, price, quantity",
-        [
-            ("Samsung", "256GB", 50000, 5),
-            ("Samsung", "256GB", 50000, 5),
-            ("Samsung", "256GB", 50000, 5),
-            ("Samsung", "256GB", 50000, 5),
-        ],
-    )
-    def test_product(self, name, description, price, quantity):
+
+    def test_product(self, name_product):
+        name, description, price, quantity = name_product
         product = Product(name, description, price, quantity)
 
         assert product.name == "Samsung"
         assert product.description == "256GB"
         assert product.price == 50000
         assert product.quantity == 5
+
+    # тест на нулевое количество товара
+    @pytest.mark.parametrize(
+        "name, description, price, quantity, expectation",
+        [
+            ("Samsung", "256GB", 50000, 5, does_not_raise()),
+            ("Samsung", "256GB", 20000, 0, pytest.raises(ValueError)),
+            ("Samsung", "256GB", 30000, 5, does_not_raise()),
+            ("Samsung", "256GB", 50000, 0, pytest.raises(ValueError)),
+        ],
+    )
+    def test_zero_quantity(self, name, description, price, quantity, expectation):
+        with expectation:
+            product = Product(name, description, price, quantity)
+            assert product.name == name
+            assert product.description == description
+            assert product.price == price
+            assert product.quantity == quantity
 
 
 # тестирование класс метода new_product
