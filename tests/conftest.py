@@ -3,7 +3,6 @@ import pytest
 from src.product import Product
 
 
-
 # для тестирования product.py
 @pytest.fixture
 def mobile_telephone():
@@ -90,3 +89,33 @@ def lawn_grass():
         "green",
     )
     return name, description, price, quantity, country, germination_period, color
+
+
+# словарь для тестирования smartphone.py
+@pytest.fixture
+def smartphones():
+    device = {
+        "name": "Iphone 14",
+        "description": "for India",
+        "price": 47600,
+        "quantity": 18,
+        "efficiency": "6‑core CPU",
+        "model": "Pro Max",
+        "memory": "256Gb",
+        "color": "black",
+    }
+    return device
+
+
+@pytest.fixture
+def grass_dict():
+    grass = {
+        "name": "football",
+        "description": "football pitch",
+        "price": 720,
+        "quantity": 10,
+        "country": "Belgium",
+        "germination_period": "1 mouth",
+        "color": "green",
+    }
+    return grass
