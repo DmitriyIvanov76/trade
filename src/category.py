@@ -31,6 +31,24 @@ class Category:
     @property
     def products(self):
         return self.__products
+    # метод подсчитывающий средний ценник всех товаров
+    def middle_price(self):
+        try:
+            result = sum(prices[2] for prices in self.__products) / len(self.__products)
+            return result
+        except ZeroDivisionError:
+            return 0
+
+
+
 
 
 # if __name__ == '__main__':
+#     tel = [
+#             ("Motorola", "телефоны двухтысячных", 7500, 25),
+#             ("Ericsson", "телефоны двухтысячных", 10000.3, 12),
+#         ]
+#     empty_list = []
+#     a = Category("смартфоны", "Смартфоны, как средство не только коммуникации", empty_list)
+#
+#     print(a.middle_price())
